@@ -1,0 +1,686 @@
+---------------------------------------Notes on C programming----------------------------------------
+
+**Developed by Dennis Ritchie in AT&T bell labs
+*Why C
+	> programmers have nearly full control
+	> fast programming language
+	> can manage memory
+	> can reach closest to machine level code
+	> lowest level programming(above assembly)
+	> use for competitive programming
+	> first step in learning coding
+
+*Implementation
+	> OS like linux and windows macs are designed in C
+	> databases and dbms are also designed in c
+	> cython, ruby, pearl language is designed in c
+	> compilers are also written in c
+	> games are designed in c for fast performance
+	> python lib are also written in c
+	> apache nginx web servers have c in it
+
+*Preprocessing
+	removing comments, expanding macros, pasting header files
+
+	>Preprocessing cmd
+		preprocessing cmd starts with #
+		1. #ifdef
+			- if defined then execute code until #endif or #else not encoutered
+
+		2. #endif
+			- end tag use for ifdef, ifndef, #if , etc
+
+		3. #ifndef
+			- if not defined then execute following code
+
+		4. #if
+			- use logical,relational operators for previously defined macros
+
+		5. #else
+			- use with #if
+
+		6. #elif
+			- same as else if
+
+		7. #undef
+			- used to undefined previously defined macros
+			
+		8. #pragma GCC warning "this is warning"
+		9. #pragma GCC error "this is a error, code will not compile"
+		10. #pragma message "this is a msg"
+		11. #error ***this is a error, but the code will compile**
+
+	> Debuggin
+		use ifdef and MACRO to execute some extra lines of code for understanding
+
+	>Header files
+		It includes declarations of identifiers (and not definition)
+		Definition is in libraries, headers contains only declaration.
+		
+		-Two ways to include header files
+			#include<stdio.h> -->finds header file in system folder
+			#include"file_name" -->finds in the current directory
+
+	stdio.h --> for input output fucntions
+	string.h --> for string functions
+	stdlib.h --> for dynamic memory allocation functions
+	time.h --> time functions
+	unistd.h --> unix standard library
+
+	>Predefined macros
+		__TIME__ -->returns time as string
+		__DATE__ -->returns date as string
+		__FILE__ -->returns file name as string
+		__STDC__ -->returns 1 if compilers is compiled with ansi standard
+		__LINE__ -->returns current line no
+	>NULL
+	It is a macro defined as (void*)0
+
+*Defining macro
+	#define SQUARE(x) x*x
+	#define PI 3.14
+	
+*Compilation Process
+	1. Preprocessing
+		removing comments, expanding macros, pasting header files
+		input: hello.c
+		output: hello.i
+
+	2. Compilation
+		Assembly level Instructions are generated
+		input: hello.i
+		output: hello.s(assembly file)
+	
+	3. Assembly
+		machine level code is generated
+		input: hello.s(assembly file)
+		output: hello.o or hello.exe (executable file)
+
+	4. Linking
+		combines all files into one executable files
+
+	> compilation flags
+
+	1. gcc -Wall
+		enables all warning messages
+
+	2. gcc hello.c -o executable
+		name the executable
+
+	3. gcc -c hello.c
+		makes object file
+
+	4. gcc -save-temps hello.c -o hello
+		makes all intermidiate files
+
+	5. gcc hello.c > file.txt
+		saves output in a file
+
+	6. gcc -D MACRO_NAME hello.c
+		defines a macro
+
+*variables
+	1. can have alphabets, numbers and underscore
+	2. cant start with numbers
+	3. cant have reserved keywords
+	4. case sensitive
+
+*global variables: variable declared globally, and have the global scope
+	global var initialised to zero, if not mentioned
+
+*local variables: variable declared locally, and have the local scope
+*precedence of local var > precedence of global var
+
+*constant
+	1. declaring constant using preprocessing command
+		#define PI 3.14
+	2. declaring constant using const keyword
+		const float g = 9.807;
+
+	3. constant pointers
+		int n = 2, m = 3
+		const int *p = &n => here you cant do this *p = 5
+		int* const p = &n => here you cant do this p = &m
+		const int* const p = &n => here u cant do both
+
+*Data Types
+	1. Primitive data types
+		int, char, float, double
+	2. Derived data types:
+		array, pointer, structure and union
+	3. enumeration
+	4. void
+
+*Following are the primitive data types in C and their size according to 64-bit architecture
+	>signed int
+	 Format Specifier: %d
+	 Size: 32bit
+
+	>unsigned int
+	 Format Specifier: %u
+	 Size: 32bit
+
+	>signed short int
+	 Format Specifier: %hd
+	 Size: 16bit
+
+	>unsigned short int
+	 Format Specifier: %hu
+	 Size: 16bit
+
+	>signed long int
+	 Format Specifier: %ld
+	 Size: 64bit
+
+	>unsigned long int
+	 Format Specifier: %lu
+	 Size: 64bit
+
+	>signed char
+	 Format Specifier: %c
+	 Size: 8bit
+
+	>unsigned char
+	 Format Specifier: %c
+	 Size: 8bit
+
+	>float
+	 Format Specifier: %a.bf
+	 Size: 32bit
+
+	>double
+	 Format Specifier: %lf
+	 Size: 64bit
+
+	>long double
+	 Format Specifier: %Lf
+	 Size: 128bit
+
+	 >pointer
+	 Format Specifier: %x
+	 Size: 16bit
+
+*Operators
+	1. Arithmetic Opearators
+		addition, subtraction, multiplication, division, modulus
+	
+	2. Relational Opearator
+		==, !=, >, <, >=, <=
+
+	3. Updation Operators
+		a++, a--, ++a, --a
+
+	4. Assignment Operators
+	
+	5. Logical Opearator
+		&&, ||, !
+	
+	6. Bitwise Opearator
+		&(and), |(or), ^(exclusive or), ~(compliment), <<(left shift), >>(right shift)
+		Cool Formulas:
+			a<<n = a*2^n
+			a>>n = a/2^n
+		
+	7. Miscellanous Opearator
+		sizeof, ternery, &, pointer
+
+*Escape Sequences
+	1. \a for alarm sound
+	2. \b for backspace
+	3. \n for new line
+	4. \f for form feed
+	5. \r for carriage return
+	6. \t for horizontal tab
+	7. \v for vertical tab
+	8. \\ for backslash 
+	9. \' for single quote
+	10. \" for double quote
+	11. \? for question mark
+	12. \nnn for octal number
+	13. \xhh for hex number
+
+*if else
+	1. only if
+		if(condition){
+			code to be executed
+		}
+
+	2. if and else
+		if(condition){
+			code to be executed
+		}
+		else{
+			code to be executed
+		}
+
+	3. if else ladder
+		if(condition){
+			code to be executed
+		}
+		else if(condition){
+			code to be executed
+		}
+		else{
+			code to be executed
+		}
+
+*switch case
+	switch can only accept int and char
+
+	switch(variable){
+		case 1:
+		code;
+
+		case 'a':
+		code;
+
+		case 2:
+		case 3:
+		code for 2 and 3;
+
+		default:
+		code of not matching case;
+	}
+	
+*loops
+	Types of Loops:
+		1. For loop:
+			properties:
+			1. can have more than 1 initialization like for(i=0;j=0;i<5;i++)
+			2. initialization is optional like for(;i<5;i++)
+			3. conditional part is also optional like for(i=0;;i++)
+			4. can have more than one condition, but other conditions will be treated as statements
+			5. can have more than one updation and it is also optional
+		2. Do while loop
+		3. while loop
+
+*break and continue:
+	break: breaks the loop or case and jumps to next block of code
+	continue: breaks the current loop and jumps to next iteration
+
+*go to statement
+	goto label;
+
+	label: 
+	//lines of codes
+
+*Typecasting
+	int a = 11;
+	int b = 5;
+	float result = (float)a/b
+
+*functions
+	>declaration
+		datatype function(parameter1, parameter2, ...){
+			code here
+		}
+
+	>Calling
+		function(argument1, argument2, ...);
+
+*Recursion / recursive function
+	function that calls itself
+
+*arrays
+	collection of data items having same data types
+		1. one dimensional array (ika list)
+			int arr[] = {1, 2, 3, 4};
+
+		2. two dimensional array (ika matrices)
+			int arr[2][4]={{2,4,6,8},{5,10,15,20}};
+
+*pointers
+	stores the address of another variable
+	can be dereference with *
+	**NULL pointer is a pointer pointing to nothing
+	**void pointer is a pointer having void data type
+	**Wild pointer is an uninitialised pointer, pointing to unknown memory space
+	**dangling pointer pointing to the memory, which is no longer alive
+
+*pointer Arithmetic
+	1. pntr++
+	2. pntr--
+	3. pntr+n
+	4. pntr-n
+	5. pntr[n]
+
+*array pointer
+	int arr[] = {1,2,4};
+	here arr is a array pointer pointing towards first element of an array
+	this pointer is a constant pointer, u cant modify it
+
+
+
+*dereference method of an array
+	> method to get value
+		arr[3];
+		*(arr+3)
+		*(&arr[3])
+	> methods to get address
+		arr+3
+		&arr[3]
+
+*function calls
+	we can call function in two ways
+		1. call by value
+			func(a);
+			changes to 'a' in func will not reflect in main funcion
+		2. call by address
+			func(&a)
+			changes to 'a' in func will get reflect in main function
+
+*passing arrays in function
+	1. first way
+		main{
+		func(arr);
+		here we pass the address of first element of an arr in func
+		}
+
+		int func(int array[]){
+			here we created anothere array having same address as arr in main
+			array[3] = 67;
+			changes like this will get reflected in main
+		}
+	
+	2. second way
+		main{
+			func(arr);
+		}
+
+		func(int* pntr){
+			here we stored the address of the first element of arr in pntr
+			*(pntr+3)= 67;
+			changes like this will get reflected in the main function
+
+		}
+
+*Strings
+	1.Declaring Strings
+		Method1: arrays of char
+			char str[] = "Hello!";
+			it is equivalent to:
+			char str[] = {'H', 'e', 'l', 'l', 'o', '!', '\0'};
+
+		Method2: Pointer to readonly memory
+			char* str = "Hello!";
+			it is equivalent to:
+			const static nonamearr[] = {'H', 'e', 'l', 'l', 'o', '!', '\0'};
+			char* str = noname;
+
+		Method3: Pointer to dynamic memory
+			char* str = malloc(7*sizeof(char));
+			strcpy(str,"Hello!")
+	
+	2.Printing Strings
+		a. printf("%s",name);
+		b. custom function using while loop
+		c. puts(name)
+
+	3. Strings function
+		a. strcmp: string compare
+		b. strlen: string length
+		c. strcat: string concatenation
+		d. strcpy: string copy
+
+*Structure
+	user defined data type
+	syntax: 
+		struct [structure_name]{
+			datatype1;
+			datatype2;
+			datatype3;
+		}
+		[sturcture_variables];
+
+				OR
+
+		struct [structure_name]{
+			datatype1;
+			datatype2;
+			datatype3;
+		};
+		struct [structure_name] [variables];
+	
+	defining struct:
+		struct employee e1;
+		e1.id = 2345;
+		e1.name = "raquib";
+
+	sturcture member operator (.)
+
+*Typedef
+	    syntax: typedef <old-name> <new-name>
+	method 1:
+		typedef struct worker{
+	    	int id;
+	    	int wages;
+		}wrkr;
+
+	method 2
+		typedef struct worker wrkr;
+*union
+	very similar to struct, but u can use one data at a time
+	all data stored in one sharing location having size equal to largest data size
+	syntax similar to struct, use 'union' instead 'struct'
+
+*enumeration
+	enum color{
+		RED,
+		WHITE,
+		GREEN
+	};
+	//we can initialise as RED=7,
+
+*Random variable Generator
+	header files to be included:
+		stdlib.h and time.h
+
+	-providing seeed:
+		srand(time(NULL));
+		rand();
+
+	-providing upper value
+		rand()%upper_value;
+	
+	-providing upper and lower value
+		rand()%(upper-lower+1)+lower
+
+*FILE I/O
+	create a file pointer: FILE* ptr = NULL;
+	>functions
+		1. fopen("file_name","mode"); //returns file pointer
+		2. fclose(file_pointer);
+		3. fseek(file_pointer,offset,position) -> position: SEEK_END, SEEK_SET, SEEK_CUR
+		4. ftell(file_pointer)
+		5. fprintf(file_pointer,"content with specifiers",variables_for_specifiers);
+		6. fscanf(file_pointer,"content with specifiers",variables_for_specifiers);
+		7. fgetc(file_ptr);//stdin incase of terminal input
+		8. fgets(string_name,n(size),file_ptr);//stdin incase of terminal input
+		9. fputc("char",file_ptr);//stdout incase of terminal output
+		10. fputs("string",file_ptr);//stdout incase of terminal output
+
+	>Modes
+		w  -->write in a file from scratch(new file created if not exist)
+		r  -->read a file
+		a  -->new content will be added to the file
+		w+ -->first erase all content then write(scratch) and read a file (new file created if not exist)
+		r+ -->write and read a file (data will be erase as much as it require to)
+		a+ --> read from beginning but new content will add to the file
+
+*Command Line Arguments
+	int main(int argc,char* argv[]){
+		//here argc is no. of Arguments
+		//and argv is array of pointers pointing to that Arguments
+		//argv[0] is file name
+	}
+
+*Memory Model
+	 ___________
+	|   Stack   | --> stores data dynamically
+	|___________|
+	|   Heap    | --> stores data in stack (LIFO) form
+	|___________|
+	|  Global   | --> global and static variables are stored before code run
+	|   And	    | 	   ___________________________________________________________________
+	|Static var | --> |  data (stores initialised var) |  bss (stores uninitialised var)  |
+	|___________|	  |________________________________|__________________________________|
+	|    Code   |
+	|___________| --> aka text segment. stores text
+
+*dynamic memory allocation
+	dynamic memory allocation is a way to allocate and free memory during run time.
+
+	dynamic memory allocation function:
+		a. malloc: to perform a memory allocation(doesnt initialise)
+			ptr = (ptr_type)malloc(size_in_bytes);
+		
+		b. calloc: to create contiguous memory alloction(initialised with 0)
+			ptr = (ptr_type)calloc(n,size_in_bytes);
+		
+		c. realloc: to re allocate memory
+			ptr = (ptr_type)realloc(old_ptr,new_size);
+			here your data is kept as it is...
+			BTS:
+				if u want to increase the size, it will increase it, if possible or
+				will copy all your data to new space of increased size and return same or new pointer
+			
+			-> it always return void pointer
+		
+		d. free: free the memory
+			free(ptr);
+
+*Linking Files
+**Always include function prototype/declaration and structures unions in a header file
+  for good maintenance
+  
+  You can include header files having function prototype/declaration
+  using #include"something.h"
+
+  You can linked two files by using:
+  gcc file1.c file2.c -o myprog
+
+  you can compile single file into object file:
+  gcc -c file1.c
+  output: file1.o
+
+  you can link object file directly:
+  gcc file1.o file2.o -o myprog
+  
+*declaration: to tell compiler about var_name and var_type and no space reserved
+*definition: to tell compiler about var_name and var_type and space reserved
+	
+
+*Function pointers
+	int(*fptr)(int)(int);
+	//declaring a function pointer which takes two int as input and returns int
+
+	fptr=func1; //passing address of func1 to pointer
+
+	fptr(4,5); //using pointer instead of function name
+
+*Storage Class
+	1. automaic
+		keyword: auto
+		scope: local
+		initialised value: garbage
+		lifetime: till function ends
+
+	2. External
+		keyword: extern *we use extern to declare a var*
+		scope: global
+		initialised value: 0
+		lifetime: throughout the program
+		
+		*Communication between files
+  			use extern keyword to use external global variable means global variable of external file
+  			you can use extern for calling a function present in other file.
+  			in that way, you dont have to declare a prototype of a function.
+
+	3. Static
+		keyword: static
+		scope: local
+		initialised value: 0
+		lifetime: throughout the program
+		
+		 *static variable:
+			variable that preserve its value even if they are out of their scope and not initialized again
+			It gets stored in static segment instead of stack segment
+			it remains in memory througout the run of program
+			static variables are initialized to zero if not mentioned
+			static var can only have constant rvalue
+			syntax: 
+				static int a = 6;
+		
+		 static vs global var
+  			using static on global var restrict that var to be used from another file
+  
+ 		 static vs functions
+  			using static on functions restricts that functions to be used from another file
+
+ 		 static vs local var
+ 			static preserves its value when it gets out of scope
+	
+	4. Register
+		keyword: register
+		scope: local
+		initialised value: garbage
+		lifetime: till the functions ends
+
+		 it stores the variable in register of cpu for fast access
+ 		there is no guarantee that it will get stored, we advised compiler to do so..
+ 		but last call is of compiler
+ 		register class can be apply to only local variables and not global variables
+
+
+> Complex Numbers in C:
+
+	* header file: complex.h
+
+	* Data Types:
+		<type> complex: stores complex num in mentioned type
+
+	Note: float, double and long double is supported as type, u can also use "<type> _Complex"
+	eg: double complex a = 3.0 + 4.0*I
+
+	* Complex functions:
+
+	1. creal() —> returns real part as double
+	2. crealf() —> returns real part as float
+	3. creall() —> returns real part as long double
+	4. similarly, cimag(), cimagf() and cimagl()
+	5. conj(), conjf(), conjl() —> returns conjugate
+
+	* Format Specifier: %.2f%+.2fi
+
+> Initializers
+
+	* Array Initializers:
+
+	1. arr[3] = {[2]=5};
+	2. arr[5] = {12,36,20,[3 ... 5]=45};
+
+	* Struct Initializers:
+
+	1. struct test t1 = {z:3,x:1,y:2};
+
+> Bitfield
+
+	used to bitwise allocate members of structure
+
+	struct bitfield{
+	  int a:3;
+	  int b:1;
+	};
+
+> variadic functions
+	header file: stdarg.h
+	eg: int func1(int a, int b, ...);
+	1. va_list pargs —> create pointer for argument list
+	2. va_start(pargs,<last_fixed_args>) 
+	—> initialise pointer from last fixed argument
+	3. va_args(pargs,<type>) —> returns next argument
+	4. va_end(pargs) —> ends the list
+	5. va_list pargs
+	va_list pargs_cpy
+	va_copy(pargs_cpy,pargs)
+	—> copies valist and makes a new pointer can use simultaneously
