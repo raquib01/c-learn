@@ -684,3 +684,11 @@
 	va_list pargs_cpy
 	va_copy(pargs_cpy,pargs)
 	—> copies valist and makes a new pointer can use simultaneously
+	
+> Numerical Representation
+
+1. Binary: 0b0111
+2. Octal: 017
+3. Hexadecimal: 0x0F
+4. Decimal: 22
+
