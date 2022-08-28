@@ -566,8 +566,14 @@
   you can link object file directly:
   gcc file1.o file2.o -o myprog
   
-*declaration: to tell compiler about var_name and var_type and no space reserved
-*definition: to tell compiler about var_name and var_type and space reserved
+* declaration -> it ensures the compiler that one var/func exists with the given name and type
+	eg: extern int a;
+
+* defining -> it used to defines a var/function and space gets reserved in the memory
+	eg: int a;
+
+* initialization -> it initialise the var with a particular value
+	eg: a = 5;
 	
 
 *Function pointers
@@ -691,4 +697,20 @@
 2. Octal: 017
 3. Hexadecimal: 0x0F
 4. Decimal: 22
+
+-> Maths Class
+	- use math.h and stdlib.h
+	- use gcc "prg.c -lm" for compiling
+
+	abs() -> for absolute value
+	floor() -> gives lower int value
+	ceil() -> gives higher int value
+	round() -> rounds off
+	sin(), cos(), tan() -> trigonometry
+	pow(5,2) -> gives 5 * 5
+	sqrt() -> gives square root
+	log(num) -> gives log with base e
+	log2(num), log10(num) -> gives log with base 2 and 10 resp
+	hypot(num1,num2) -> gives hypotenuse side
+	 
 

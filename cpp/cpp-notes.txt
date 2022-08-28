@@ -1,0 +1,240 @@
+1. Manipulator
+2. STL
+3. string and string methods
+4. Why oops
+5. <algorithm> -> sort and transform
+6. Dynamic Allocation
+7. Dynamic Binding and Message Passing
+8. Overloading n overriding
+9. Copy Constructor
+ 
+
+------------------ C++ Notes ------------------
+- C++ is a superset of C, any valid c prog is a valid c++ prog
+- statictically typed | Object Oriented | Compiled
+
+# Data Types:
+
+	-> Primitive
+		1. Int		| 32bit
+		2. Float	| 32bit
+		3. Double	| 64bit
+		4. Char		| 8bit
+		5. bool		| 1bit
+		6. void
+		7. wide char| 16 or 32 bit
+
+	-> Derived
+		1. Array
+		2. String
+
+	-> User Defined
+		1. Enum
+		2. Struct
+		3. Union
+
+		
+# Data Type Modifier
+	1. unsigned
+	2. signed
+	3. long
+	4. short
+
+# Literal Suffix
+	U -> unsigned
+	L -> long
+	F -> Float
+	2.3 -> default Double
+	2 -> default Int
+
+# headers
+	iostream -> input / output function
+	cmath -> for mathematical functions
+	string -> for string data type and its methods
+	
+	
+# Namespace
+	Identifiers are declared under namespace, so that diff Identifiers having same name wont collide
+	It helps us to give a named logical scope for Identifiers
+	eg: using namespace std; or std::cout<<"hello"
+		namespace Myspace{
+			int a,b;
+		}
+		Myspace::a = 5;
+
+# Accessing Global Variable
+	if you want to access global variable while ignoring local variable use -> ::var
+
+# Input / Output
+	header file: #include<iostream>
+	1. << (insertion operator)
+	2. >> (extraction operator)
+
+	std::cin and std::cout is used for i/o
+
+# Reference Variable
+	two variable pointing to same address
+	int a = 5;
+	int &b = a;
+
+# Inline Function
+	inline int product(int a, int b){
+		return a*b;
+	}
+
+# Default Arguments -> cpp supports default Arguments(def arg must be at the extreme right)
+
+# Function Overloading works in cpp
+	same name functions having different parameters works..
+	it judge the function on the basis of:
+		1. order of param
+		2. type of param
+		3. no of param
+		
+# Built-in Max and Min function
+	max(a,b) and min(a,b)
+
+# Char Array
+	char arr[100] = "Raquib"; -> declaration
+	cin>>arr; -> taking input
+	cout<<arr; -> output
+	cin.getline(name,length) -> get whole line with spaces
+	
+
+
+# String Data type
+	#include<string>
+	1. Declararion
+		a. string name = "Raquib";
+		b. string name(5,'r'); output will be "rrrrr"
+		c. string name;
+			cin>>name;
+		d. getline(cin,name); // takes whole line as input
+		e. Indexing
+
+	2. Functions:
+		a. concatenate using '+'
+		b. append()
+		c. clear()
+		d. compare()
+		e. empty() -> return 1 if str is empty
+		f. erase()
+		g. copy()
+		h. insert()
+		i. length() or size()
+		j. substr()
+		k. stoi()
+		l. to_string()
+		m. find() and replace()
+		n. pop_back()
+		o. begin() and rbegin()
+		p. end() and rend()
+
+
+
+# Algorithm
+	include<algorithm>:
+	sort(a.begin(),a.end(),<comparatior fucn>);
+	transform();
+
+
+# Dynamic Allocation
+
+	1. new
+		syntax: <pointer> = new <data-type>(<value>)
+		eg: int* p = new int(5);
+
+		incase of arr:
+		<pointer> = new <data-type>[<size>]
+		eg: int* p = new int[5]
+
+		-> Note:
+		- if heap is full,it returns error
+		- if you use nothrow (int* p = new(nothrow) new(5)), no error but p will be NULL
+
+	2. delete
+		syntax: delete <pointer>
+		
+		incase of arr:
+		delete[] <pointer>
+
+# Manipulator use <iomanip> or <ios>
+	1. cout << std::boolalpha; -> for printing 'true' and 'false' of bool data type
+	2. cout << std::noboolalpha;
+	3. cout << std::endl -> print next output in newline
+	4. cout << std::flush -> clears buffers
+	
+	-- Table --
+	5. cout << std::setw(10) << "raquib" << "khan";
+	6. cout << std::right -> for right align
+	7. cout << std::left -> for left align
+	8. cout << std::internal -> for justify align
+
+	-- number --
+	9. cout << std::dex | hec | oct;
+	10. cout << setprecision(10)
+	
+
+
+# Enumeration
+	enum meal{breakfast,lunch,dinner}
+
+
+
+------------------  OOPS  ------------------
+
+# WHY OOPS
+	1. Modularity -> can break the prog in modules
+	1. Reusability -> by making minimal change, new code can be written(DRY)
+	2. Data Security
+	3. Close to Real World
+	4. Maintainability 
+
+# 4 Pillars of OOPS
+	1. Encapsulation -> binds the related data together and protect it from others
+	2. Abstraction	-> hide unnecessary data complex info and provide simplicity
+	3. polymorphism	-> a entity takes many forms, Overloading and overriding
+	4. inheritance -> a child possess attribute & behaviour of parents
+
+# Object: Instance of a class
+	for eg: car
+	it contains behaviour(method) eg. driving and attribute(Instance var) eg: name, color
+
+# Class:
+	A blueprint thats shows method/Instance var a object of this class supports
+
+# Method: 
+	Logics and Action to be perform with a object
+	
+	Two ways to define methods
+		1. declare it under the class and define it outside using scope resolution
+		2. directly define it under the class(it will be inline func)
+	
+	(all methods/member function has "this" pointer pointing to the self object)
+
+
+# Instance Variable: 
+	object stores data in instance var
+
+# Access Specifiers:
+	1. Private - only class and friend function can access(default)
+	2. Protected - only class and friend function and derived class can access
+	3. Public - anyone can access
+
+# Constructor
+	1. special method that executes every time u create an object
+	2. Constructor name == class name
+	3. Does not have any return type
+
+# Destructor
+	1. special method that executes whenever object gets out of scope or u del a pointer pointing to an obj
+	2. Destructor name == ~Constructor name
+	3. does not have any return type and dont take any arguments
+	4. use for freeing memory / closing files
+
+# Friend Fun and Friend Class
+	1. If a "fun1" is friend function of "class1" it will have all access to its private and protected members
+	2. If a "class2" is a friend class of "class1", all members fuction of "class2" are friend of "class1"
+
+# inheritance
+	class <class_name>: <access specifier> <base-class>, <access specifier> <base-class>
