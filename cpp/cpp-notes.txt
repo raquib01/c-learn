@@ -1,13 +1,17 @@
-1. Manipulator
-2. STL
-3. string and string methods
-4. Why oops
-5. <algorithm> -> sort and transform
-6. Dynamic Allocation
-7. Dynamic Binding and Message Passing
-8. Overloading n overriding
-9. Copy Constructor
- 
+--> Pending
+Manipulator
+string methods
+<algorithm> -> sort and transform
+STL
+Dynamic Binding and Message Passing
+overriding
+Function Overloading definition
+Operator Overloading
+Virtual Base Class
+Virtual function
+Pure Virtual function
+Abstract Base Class 
+4 pillars of OOps detail
 
 ------------------ C++ Notes ------------------
 - C++ is a superset of C, any valid c prog is a valid c++ prog
@@ -23,6 +27,7 @@
 		5. bool		| 1bit
 		6. void
 		7. wide char| 16 or 32 bit
+		8. auto
 
 	-> Derived
 		1. Array
@@ -140,23 +145,13 @@
 
 # Dynamic Allocation
 
-	1. new
-		syntax: <pointer> = new <data-type>(<value>)
-		eg: int* p = new int(5);
+	* New Operator
+		int* ptr = new int(5)  --> here 5 is the value
+		int* arr = new int[6]  --> here 6 is the size of arr
 
-		incase of arr:
-		<pointer> = new <data-type>[<size>]
-		eg: int* p = new int[5]
-
-		-> Note:
-		- if heap is full,it returns error
-		- if you use nothrow (int* p = new(nothrow) new(5)), no error but p will be NULL
-
-	2. delete
-		syntax: delete <pointer>
-		
-		incase of arr:
-		delete[] <pointer>
+	* Delete Operator
+		delete ptr;		--> freeing single space
+		delete[] arr;	--> freeing block
 
 # Manipulator use <iomanip> or <ios>
 	1. cout << std::boolalpha; -> for printing 'true' and 'false' of bool data type
@@ -222,9 +217,18 @@
 	3. Public - anyone can access
 
 # Constructor
+	two types:
+		1. default constructor (no args)
+		2. parameterized constructor
+		
 	1. special method that executes every time u create an object
 	2. Constructor name == class name
 	3. Does not have any return type
+
+	Implicit Declaration: Rectangle r1(3,4)
+	External Declaration: Rectangle r1 = Rectangle(3,4)
+
+	* Constructor Overloading Exists
 
 # Destructor
 	1. special method that executes whenever object gets out of scope or u del a pointer pointing to an obj
@@ -232,9 +236,189 @@
 	3. does not have any return type and dont take any arguments
 	4. use for freeing memory / closing files
 
-# Friend Fun and Friend Class
-	1. If a "fun1" is friend function of "class1" it will have all access to its private and protected members
-	2. If a "class2" is a friend class of "class1", all members fuction of "class2" are friend of "class1"
+# this keyword: refer to current object
 
+# Friend Fun and Friend Class
+	- not a member of a class
+	- have access to private and protected members
+	- do not have access to this pointer
+	- invoked directly without any obj or class
+
+	friend <func_declaration>; -> inside the class
+	friend class <class_name> -> making all members of that class as friend function
+	
+
+# Static Member 
+	1. Variable
+		(1 copy var associate with class.)
+		need to be declare like this
+
+		class <class-name>
+		{
+			static int count;
+		};
+
+		int <class-name>::count;
+
+	2. Function
+		it has access to only static members of the class
+		it is called using class name, need no obj creation
+
+# Copy Constructor
+	used to initialize new Obj 'A' as a copy of prev defined obj 'B'
+
+	calling of the cpy Constructor:
+	1. Number b(a);		// custom cpy Constructor
+	2. Number b = a;	// custom cpy Constructor
+
+	Note: 
+	Default Copy constructor is called in following condition:
+    	1. if there is no copy constructor specified
+    	2. using assignment operator after declaration
+
+	
 # inheritance
-	class <class_name>: <access specifier> <base-class>, <access specifier> <base-class>
+	- Base Class: Parent class
+	- Derived Class: Child Class
+
+	-> Types:
+		1. Single Level inheritance: 1 parent 1 Child
+		2. Multiple Inheritance: many parent 1 child
+		3. Heirarchical Inheritance: 1 parent many child
+		4. Multilevel Inheritance: parent of parent > parent > child
+		5. Hybrid Inheritance: mixed structure
+		 
+	-> Syntax
+		class <class_name>: <visibility-mode> <base-class>, <visibility-mode> <base-class>{
+			//code here
+		}
+
+	-> visibility mode / Access Specifier:
+		Public  -> base-class | Public   ----->   derived-class | Public
+				   base-class | Protected   ----->   derived-class | Protected
+		
+		Private -> base-class | Public   ----->   derived-class | Private
+				-> base-class | Protected   ----->   derived-class | Private
+
+		Protected -> base-class | Public   ----->   derived-class | protected
+				  -> base-class | Protected   ----->   derived-class | protected
+
+
+	Note:
+	1. default visibility mode is private
+	2. private member gets inherit but u cant access in the derived class; u need to call public method of base class for accessing
+	3. base constructor called before derived constructor
+		syntax:
+			class Programmer: private Employee{
+				public:
+					Programmer(int a, int b):Employee(a){
+						//code here
+					}
+			}
+
+# Virtual Base Class:
+            Student
+               |
+    Test-----------------Sports
+      |                     |
+      |                     |
+      -----------------------
+                |  
+                |
+              Result  
+
+	if Student has var a, it gets inherited by Test and Sports
+	and when Result inherits from Test and Sports, it has two copy of var a, one from Test and one from Sports
+	To resolve this ambigiuty
+	Student is set as a virtual Base like this
+
+	class Test: virtual Student{
+	    //code here
+	}
+	class Sports: virtual Student{
+	    //code here
+	}
+
+	Now Result will have only one copy of var a
+
+# Polymorphism
+	-> Two types
+		1. Compile Time Polymorphism
+			a. Function Overloading
+			b. Operator Overloading
+
+		2. Run Time Polymorphism
+			a. Virtual Function
+
+# Ptr to Der Class:
+	if ptr of type BASE_CLASS points to DERVIED_CLASS, then u can only access inherits member of derived class
+	eg:
+		class Base{
+			int var1
+		};
+
+		class Der:Base{
+			int var2
+		};
+
+		Base obj1;
+		Der obj2;
+
+		Base *ptr = &obj2;
+
+		ptr->var1;		--> valid
+		ptr->var2 ;		--> not valid
+
+# File I/o
+	header : fstream
+
+	* Writing a file
+		ofstream obj("i.txt");
+		obj<<"This is the new entry";
+	
+	* Reading a file
+		i. basic reading
+			string s;
+			ifstream obj("i.txt");
+			obj>>s;
+		
+		ii. reading whole line
+			string s;
+			ifstream obj("i.txt");
+			getline(obj,s)
+
+	* Opening a file
+		1.
+			ofstream obj("i.txt");		-> for writing
+				or
+			ofstream.open("i.txt");
+
+
+		2.  
+			ifstream obj("i.txt");		-> for reading
+			ifstream.open("i.txt");
+
+	* Closing a file
+		obj.close();
+
+
+	* Reading using loop:
+		while(obj.eof==0){//read using getline};
+
+# For Template: see code
+
+# STL
+	Containers---------Algorithms------------Iterator
+		|					|					|
+		v					v					v
+	stores data			process data		points to data
+
+
+	1. Sequence Container --stores in linear fashion
+	eg: list, vector, dequeue
+
+	2. Associative Container	--Direct Access
+	eg: set,multiset,map, multimap
+
+	3. Derived Container --Real world modelling
+	eg: stack,queue,priority queue

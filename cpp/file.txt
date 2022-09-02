@@ -1,0 +1,6 @@
+0. This line is written through fileio.cpp program.
+1. This line is written through fileio.cpp program.
+2. This line is written through fileio.cpp program.
+0. This line is written through fileio.cpp program.
+1. This line is written through fileio.cpp program.
+2. This line is written through fileio.cpp program.

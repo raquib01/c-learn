@@ -1,5 +1,11 @@
 #include<iostream>
 #include<string.h>
+/*
+Overloading gets resolved considering
+1. type of args
+2. no. of args
+3. order of args
+*/
 using namespace std;
 
 int add(int a, int b){
