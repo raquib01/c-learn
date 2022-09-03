@@ -25,6 +25,7 @@ int main(){
    auto v = 5U; // here v is unsigned int
    auto w = 3.4L; // here y is long double
    auto z = 3.4F; // here z is float
+   auto s = "raquib"s; //here s is string
 
     // derived data type
     int g[3] = {3,4,5}; // int array

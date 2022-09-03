@@ -12,6 +12,7 @@ class Rectangle
 		int breadth;
 		static int n;
 
+		Rectangle(){}; // default constructor
 		Rectangle(int x_cord,int y_cord); // constructor
 		~Rectangle(); // Destructor
 
@@ -38,7 +39,7 @@ int Rectangle::n = 0;
 // methods
 
 void Rectangle::set_x(int x_cord){
-	x = x_cord;
+	this->x = x_cord; // use of this pointer  to avoid confusion
 }
 
 void Rectangle::set_y(int y_cord){
@@ -70,6 +71,7 @@ Rectangle::~Rectangle(){ // Destructor(does not have return type & name is same 
 
 int main(){
 	Rectangle r1(6,7); // initializing
+	// Rectangle r1 = Rectangle(6,7) // another way 
 	// Rectangle r1; // can also initialize like this if no constructor / (constructor with no arg) is created
 	
 	// assigning using member operator

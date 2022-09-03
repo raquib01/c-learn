@@ -1,17 +1,6 @@
 --> Pending
-Manipulator
-string methods
-<algorithm> -> sort and transform
-STL
-Dynamic Binding and Message Passing
-overriding
-Function Overloading definition
-Operator Overloading
-Virtual Base Class
-Virtual function
-Pure Virtual function
-Abstract Base Class 
-4 pillars of OOps detail
+	<algorithm> library
+	STL library
 
 ------------------ C++ Notes ------------------
 - C++ is a superset of C, any valid c prog is a valid c++ prog
@@ -51,11 +40,15 @@ Abstract Base Class
 	F -> Float
 	2.3 -> default Double
 	2 -> default Int
+	"abc"s -> for string
 
 # headers
 	iostream -> input / output function
+	iomanip -> manipulators
+	cstring -> char string
 	cmath -> for mathematical functions
 	string -> for string data type and its methods
+	fstream -> file io
 	
 	
 # Namespace
@@ -88,34 +81,54 @@ Abstract Base Class
 	}
 
 # Default Arguments -> cpp supports default Arguments(def arg must be at the extreme right)
-
-# Function Overloading works in cpp
-	same name functions having different parameters works..
-	it judge the function on the basis of:
-		1. order of param
-		2. type of param
-		3. no of param
 		
 # Built-in Max and Min function
 	max(a,b) and min(a,b)
 
-# Char Array
-	char arr[100] = "Raquib"; -> declaration
-	cin>>arr; -> taking input
-	cout<<arr; -> output
-	cin.getline(name,length) -> get whole line with spaces
+# String
+	1. String as char array:
+		char s[10] = "raquib";	-> definition
+		cin>>s;					-> taking input
+		cout<<s;				-> giving output
+		cin.getline(s,<len>);	-> taking input as whole line
+
+		header:<cstring>
+		methods:
+		1. strcpy()
+		2. strcmp()
+		3. strlen()
+		4. strcat()
+		5. strchar()
+		6. strstr()
+
+	2. String as String (class)
+		string s = "raquib";	-> definition
+		cin>>s;					-> taking input
+		cout<<s;				-> giving output
+		getline(cin,s);			-> taking input as whole line
+
+		header: <string>
+		methods:
+		size()
+		operator+
+		append()
+		compare()
+		empty()
+		erase()
+		find()
+		insert()
+		substr()
+		stoi()
+		clear()
+
 	
 
 
 # String Data type
+	#include<cstring>
+
 	#include<string>
 	1. Declararion
-		a. string name = "Raquib";
-		b. string name(5,'r'); output will be "rrrrr"
-		c. string name;
-			cin>>name;
-		d. getline(cin,name); // takes whole line as input
-		e. Indexing
 
 	2. Functions:
 		a. concatenate using '+'
@@ -316,6 +329,10 @@ Abstract Base Class
 					}
 			}
 
+	# Function overriding
+		parent class and child class having same name and parameters function...
+		parents functions gets override by childs
+
 # Virtual Base Class:
             Student
                |
@@ -350,24 +367,39 @@ Abstract Base Class
 		2. Run Time Polymorphism
 			a. Virtual Function
 
-# Ptr to Der Class:
-	if ptr of type BASE_CLASS points to DERVIED_CLASS, then u can only access inherits member of derived class
-	eg:
-		class Base{
-			int var1
-		};
 
-		class Der:Base{
-			int var2
-		};
+	# Function Overloading works in cpp
+		same name functions having different parameters works..
+		it judge the function on the basis of:
+			1. order of param
+			2. type of param
+			3. no of param
 
-		Base obj1;
-		Der obj2;
+	# Operator Overloading:
+		see code
 
-		Base *ptr = &obj2;
 
-		ptr->var1;		--> valid
-		ptr->var2 ;		--> not valid
+	# Virtual Function
+		virtual func is used when function are overridden
+
+		suppose class B is inherited from class A (A --> B)
+		there is a dislplay() in A and in B
+
+		A *ptr = &b_obj;
+		b_obj->display(); ---> this will call display() of class A 
+
+		here compiler does early binding, means compiler look for pointer type and do things and ignores obj_type
+
+		if we mention virtual in base class --> virtual void display()
+		here compiler does late binding, means it considers the obj_type
+
+	# Pure Virtual Function
+		virtual display() = 0; here we make it compulsory for the derived class to override this function
+
+	# Abstract Base Class
+		any class having atleast 1 pure virtual function is an Abstract Base Class
+		you cannot instantiate an object from ABC(Abstract Base Class)
+		All of the pure virtual functions must be override by derived classes in order to function
 
 # File I/o
 	header : fstream
@@ -405,7 +437,22 @@ Abstract Base Class
 	* Reading using loop:
 		while(obj.eof==0){//read using getline};
 
-# For Template: see code
+# For Template:
+	1. Class Template
+		template <class T1,classT2>
+
+		class C1{
+			//code here
+		}
+
+		C1 <int,float> c;
+
+	2. Function Template
+		template <typename T1>
+		T sum(T a, T b){
+			return a+b;
+		}
+
 
 # STL
 	Containers---------Algorithms------------Iterator
@@ -422,3 +469,4 @@ Abstract Base Class
 
 	3. Derived Container --Real world modelling
 	eg: stack,queue,priority queue
+
