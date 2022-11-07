@@ -48,7 +48,6 @@
 		8. #pragma GCC warning "this is warning"
 		9. #pragma GCC error "this is a error, code will not compile"
 		10. #pragma message "this is a msg"
-		11. #error ***this is a error, but the code will compile**
 
 	> Debuggin
 		use ifdef and MACRO to execute some extra lines of code for understanding
@@ -77,8 +76,29 @@
 	It is a macro defined as (void*)0
 
 *Defining macro
-	#define SQUARE(x) x*x
-	#define PI 3.14
+	type 1:
+		#define FACTOR 2 ---> int
+	
+	type 2:
+		#define PI 3.14  ---> float
+	
+	type 3:
+		#define S "raq"  ---> string
+	
+	type 4:
+		#define CH "A"   ---> char
+	
+	type 5:
+		#define SQUARE(x) x*x	--> small function
+	
+	type 6:
+		#define MSG(a,b) printf(#a "and" #b "are friends") --> print msg
+		MSG(john,cannedy)
+	
+	type 7:
+		#define MAX(a,b) (a>b?a:b)	---> macro with conditions
+
+
 	
 *Compilation Process
 	1. Preprocessing
