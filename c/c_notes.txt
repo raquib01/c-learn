@@ -151,6 +151,23 @@
 *local variables: variable declared locally, and have the local scope
 *precedence of local var > precedence of global var
 
+# EXIT STATUS
+	return of main funct indicates the status of the code after executing to the OS.
+	EXIT_SUCCESS or 0 --> successfull running of the code
+	EXIT_FAILURE or 1 --> failure in running of the code
+	(this macros are found in stdlib.h)
+	
+# Use of Extern in Global vs Local
+	int var = 2;
+	int foo(){
+		int var = -5;
+		// Accessing global
+		{
+			extern int var;
+			printf("%d",var);
+		}
+	}
+
 *constant
 	1. declaring constant using preprocessing command
 		#define PI 3.14
@@ -425,7 +442,7 @@
 			char* str = "Hello!";
 			it is equivalent to:
 			const static nonamearr[] = {'H', 'e', 'l', 'l', 'o', '!', '\0'};
-			char* str = noname;
+			char* str = nonamearr;
 
 		Method3: Pointer to dynamic memory
 			char* str = malloc(7*sizeof(char));
@@ -508,16 +525,25 @@
 *FILE I/O
 	create a file pointer: FILE* ptr = NULL;
 	>functions
-		1. fopen("file_name","mode"); //returns file pointer
-		2. fclose(file_pointer);
+		- fopen('file_name','mode') --> opens a file and return FILE* ptr
+		- fclose(ptr) --> close a file
+
+		- putc('x',ptr) --> putting a char
+		- getc(ptr) --> getting a char
+			Note:
+			+ can use fputc and fgetc instead
+			+ can use with file ptr or stdin and stdout)
+
+		- getchar() and putchar('x') --> for stdin and stdout only
+
+		- fprintf();
+		- fscanf();
+
+		- fgets(str,n,ptr)
+		- fputs(str,ptr)
+
 		3. fseek(file_pointer,offset,position) -> position: SEEK_END, SEEK_SET, SEEK_CUR
 		4. ftell(file_pointer)
-		5. fprintf(file_pointer,"content with specifiers",variables_for_specifiers);
-		6. fscanf(file_pointer,"content with specifiers",variables_for_specifiers);
-		7. fgetc(file_ptr);//stdin incase of terminal input
-		8. fgets(string_name,n(size),file_ptr);//stdin incase of terminal input
-		9. fputc("char",file_ptr);//stdout incase of terminal output
-		10. fputs("string",file_ptr);//stdout incase of terminal output
 
 	>Modes
 		w  -->write in a file from scratch(new file created if not exist)
